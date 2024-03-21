@@ -1,0 +1,18 @@
++ Cau hinh venv, project, app
++ Tao Abstract model (AUTH_USER_MODEL), Tao migrate -> Dung Python Shell kiem tra
++ Cau hinh Model Admin -> Create superuser
++ Tao BaseModel dung de ke thua
++ Tao thu muc static (CKEditor ko can chi dinh m Y), cau hinh duong dan tuyet doi cho cac field (MEDIA_ROOT)
+# Luon tao migrate sau khi tao model
++ Custom AdminView with models choosen; su dung mark_safe, class Media
++ Cau hinh CKEditor
++ Cau hinh Cloudinary
++ Rang buoc ManyToMany, unique_together, odering
+
+Tao API
++ Cau hinh rest_framework
++ Tao Serializer
++ Tao View
++ Register trong urls.py
+
+Tich hop Swagger

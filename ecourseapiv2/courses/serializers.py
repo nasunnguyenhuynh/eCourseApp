@@ -1,4 +1,4 @@
-from courses.models import Category, Course, Lesson, Tag
+from courses.models import Category, Course, Lesson, Tag, User, Comment
 from rest_framework import serializers
 
 
@@ -36,6 +36,34 @@ class LessonSerializer(ItemSerializer):
 
 class LessonDetailsSerializer(LessonSerializer):
     tags = TagSerializer(many=True)
+
     class Meta:
         model = LessonSerializer.Meta.model
         fields = LessonSerializer.Meta.fields + ['tags', 'content']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):  # hash password be4 store in database
+        data = validated_data.copy()
+        user = User(**data)  # unpacking dict and pass them as arg into init model User
+        user.set_password(user.password)
+        user.save()
+
+        return user
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email', 'username', 'password', 'avatar']
+        extra_kwargs = {  # prevent the password field returned when creating a new user
+            'password': {
+                'write_only': 'true'
+            }
+        }
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'content', 'created_date', 'user']

@@ -1,11 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser  # to add props for objs in the future
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
 
 
 class User(AbstractUser):
-    pass
+    avatar = CloudinaryField(null=True)
 
 
 class Category(models.Model):
@@ -62,7 +62,7 @@ class Interaction(BaseModel):
 
 
 class Comment(Interaction):
-    comment = models.CharField(max_length=255)
+    content = models.CharField(max_length=255)
 
 
 class Like(Interaction):

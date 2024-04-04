@@ -15,4 +15,8 @@ Tao API
 + Tao View
 + Register trong urls.py
 
-Tich hop Swagger
++ Tich hop Swagger
++ Phan trang (paginator):
+    + from rest_framework import pagination
+    + LisAPIView -> ListModelMixin -> List a queryset
++ Cau hinh OAuth2: Kiem tra xac thuc nguoi dung hien tai

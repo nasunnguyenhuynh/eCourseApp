@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 CKEDITOR_UPLOAD_PATH = "ckeditors/images"
@@ -46,7 +47,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    'oauth2_provider'
 ]
 
 import cloudinary
@@ -139,3 +141,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}

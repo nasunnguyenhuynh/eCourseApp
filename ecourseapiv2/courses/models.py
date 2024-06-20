@@ -46,7 +46,8 @@ class Lesson(BaseModel):
     subject = models.CharField(max_length=255)
     content = RichTextField(null=True)
     image = CloudinaryField()
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    # course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons', related_query_name='my_lessons')
     tags = models.ManyToManyField(Tag)  # Automatic create middle table
 
     def __str__(self):

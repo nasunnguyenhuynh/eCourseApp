@@ -58,7 +58,7 @@ class LessonViewset(viewsets.ViewSet, generics.RetrieveAPIView):
             return [permissions.IsAuthenticated(), ]
         return [permissions.AllowAny(), ]
 
-    @action(methods=['get'], url_path='comments', detail=True)  # /lessons/{lesson_id}/
+    @action(methods=['get', 'post'], url_path='comments', detail=True)  # /lessons/{lesson_id}/comments/
     def get_comments(self, request, pk):
         """
         page = self.paginate_queryset(queryset)
@@ -77,7 +77,6 @@ class LessonViewset(viewsets.ViewSet, generics.RetrieveAPIView):
         return Response(serializers.CommentSerializer(comments, many=True).data,
                         status=status.HTTP_200_OK)
 
-    @action(methods=['post'], url_path='comments', detail=True)  # /lessons/{lesson_id}/comments/
     def add_comments(self, request, pk):  # Comment.objects.create()
         c = self.get_object().comment_set.create(content=request.data.get('content'),
                                                  user=request.user)
